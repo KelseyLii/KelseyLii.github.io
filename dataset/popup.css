@@ -1,0 +1,66 @@
+/* 菜单栏 */
+        .menu {
+            background: #f7f9fc;
+            padding: 10px 24px;
+            border-bottom: 1px solid #e0e6f6;
+        }
+        .menu .window-btns button {
+            background: #e0e6f6;
+            color: #2e54a1;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 20px;
+            margin-right: 12px;
+            
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .menu .window-btns button:hover {
+            background: #2e54a1;
+            color: #fff;
+        }
+        /* 悬浮窗样式 */
+        .menu-popup {
+            position: absolute;
+            top: 110px;
+            left: 15px;
+            background: #fff;
+            border: 1px solid #e0e6f6;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(46,84,161,0.12);
+            padding: 16px 24px;
+            z-index: 100;
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+        .menu-popup.show {
+            display: block;
+        }
+        .menu-popup > div {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .menu-popup button {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            color: #2e54a1;
+            padding: 8px 0;
+            text-align: left;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .menu-popup button:hover {
+            background: #e0e6f6;
+        }
+        #customPlayBtn:hover {
+        background: rgba(46,84,161,1);
+    }

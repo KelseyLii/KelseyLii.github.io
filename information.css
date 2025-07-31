@@ -1,0 +1,53 @@
+/* 病例信息、总结报告 */
+.main {
+    display: flex;
+    padding: 24px;
+    gap: 24px;
+}
+.sidebar {
+    width: 400px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(46,84,161,0.07);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.case-info h3,
+.summary-report h3 {
+    color: #2e54a1;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+}
+.case-info label,
+.summary-report label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1em;
+}
+.case-info input,
+.summary-report input,
+.summary-report select {
+    padding: 6px 10px;
+    border: 1px solid #bfcbe3;
+    border-radius: 6px;
+    margin-left: 8px;
+    font-size: 1em;
+    background: #f7f9fc;
+}
+.summary-report button {
+    margin-top: 12px;
+    padding: 8px 18px;
+    background: #e0e6f6;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.summary-report button:hover {
+    background: #2e54a1;
+    color: #fff;
+}

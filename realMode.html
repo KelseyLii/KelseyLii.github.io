@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-OMS Surgical Assist System</title>
+    <link rel="stylesheet" href="/dataset/popup.css"> <!-- 引入悬浮窗样式 -->
+    <link rel="stylesheet" href="information.css">    <!-- 引入病例信息样式 -->
+    <link rel="stylesheet" href="recognition.css">    <!-- 引入视频及识别阶段样式 -->
+    <link rel="stylesheet" href="report.css">
+    <style>
+        body {
+            background: #f4f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+        }
+        .navbar {
+            background: #2e54a1;
+            color: azure;
+            display: flex;
+            align-items: center;
+            padding: 10px 24px;
+            font-size: 1.3em;
+            box-shadow: 0 2px 8px rgba(46,84,161,0.08);
+        }
+        .logo {
+            font-size: 1.5em;
+            margin-right: 12px;
+        }
+        .title {
+            font-weight: bold;
+            font-style: italic;
+        }
+        .window-btns {
+            margin-left: auto;
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        /* 标签页样式 */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .switch-module {
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab-container {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .tab-btn {
+            background: #f8f9fa;
+            border: none;
+            border-top: 3px solid transparent;
+            border-right: 1px solid #dee2e6;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e54a1;
+            transition: all 0.2s ease;
+            position: relative;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .tab-btn:last-child {
+            border-right: none;
+        }
+        
+        .tab-btn:hover {
+            background: #e9ecef;
+            color: #2e54a1;
+            font-weight: 600;
+        }
+        
+        .tab-btn.active {
+            background: white;
+            color: #2e54a1;
+            border-top-color: #2e54a1;
+            font-weight: 600;
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: white;
+        }
+
+        .recinfo {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="homepage">
+        <div class="navbar">
+            <span class="logo">🩺</span>
+            <span class="title">AI-OMS</span>
+        </div>
+        <div class="menu">
+            <span class="window-btns">
+                <button id="fileBtn">File</button>
+                <button id="realtimeBtn" style="background: #2e54a1;
+            color: white;">Real-Time Mode</button>
+            </span>
+        </div>
+        <div class="main">
+            <div class="sidebar">
+                <div class="case-info">
+                    <h3>Case information</h3>
+                    <label>Patient ID: <input id="name" type="text" value="XXX"></label>
+                    <label>Age: <input id="age" type="text" value="XX"></label>
+                    <label>Sex: <input id="sex" type="text" value="M" style="width:40px"></label>
+                    <label>Surgery: <input id="surgery" type="text" value="SMG resection"></label>
+                    <label>Date: 
+                        <input id="year" type="number" value="2025" style="width:60px"> -
+                        <input id="month" type="number" value="07" style="width:40px"> -
+                        <input id="day" type="number" value="28" style="width:40px">
+                    </label>
+                </div>
+                <!-- <div class="summary-report">
+                    <h3>Summary report</h3>
+                    <label>
+                        Duration: 
+                        <input id="durationH" type="number" value="0" style="width:40px"> h
+                        <input id="durationM" type="number" value="0" style="width:40px"> m
+                        <input id="durationS" type="number" value="0" style="width:40px"> s
+                    </label>
+                    <label>
+                        Surgeon:  <input id="surgeon" type="text" value="Dr. Smith">
+                    </label>
+                    <button id="generateBtn">Generate report</button>
+                </div> -->
+                <div id="explanation-module" class="explanation-module" style="display: flex;flex-direction: column; ">
+                        <div id="instrument"> 
+                            <h2 class="module-title">Segmentation annotation</h2>
+                            <div class="annotation-box">
+                                <div class="instrument-item">
+                                    <span class="color-label">Color:</span>
+                                    <div id="color1" class="color-square"></div>
+                                    <span class="anatomy-label">Instrument:</span>
+                                    <span class="anatomy-value">Bipolar</span>
+                                </div>
+                                <div class="instrument-item">
+                                    <span class="color-label">Color:</span>
+                                    <div id="color2" class="color-square"></div>
+                                    <span class="anatomy-label">Instrument:</span>
+                                    <span class="anatomy-value">Ultrasonic knife</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tissue"> 
+                            <h2 class="module-title">Segmentation annotation</h2>
+                            <div class="annotation-box">
+                                <div class="instrument-item">
+                                    <span class="color-label">Color:</span>
+                                    <div id="color3" class="color-square"></div>
+                                    <span class="anatomy-label">Anatomy:</span>
+                                    <span class="anatomy-value">Facial vein</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="desmoke"> 
+                            <h2 class="module-title">MIRACLE module</h2>
+                            <div class="content-area">
+                                <div class="left-panel" id="smokyPanel">
+                                    <div class="status-indicator"></div>
+                                    <div class="panel-text">
+                                        Smoky Surgical Field
+                                    </div>
+                                </div>
+                                <div class="right-panel" id="desmokePanel">
+                                    <div class="status-indicator"></div>
+                                    <div class="panel-text">
+                                        Desmoke Surgical Field
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <!-- 新增的内容包装器 -->
+            <div class="content-wrapper">
+                <!-- 标签页切换模块 -->
+                <div class="switch-module">
+                    <div class="tab-container">
+                        <button class="tab-btn active" data-case="case1" onclick="switchCase('case1')">Overall</button>
+                        <button class="tab-btn" data-case="case2" onclick="switchCase('case2')">Instrument segment</button>
+                        <button class="tab-btn" data-case="case3" onclick="switchCase('case3')">TisIsue segment</button>
+                        <button class="tab-btn" data-case="case4" onclick="switchCase('case4')">Desmoke</button>
+                    </div>
+                </div>
+                
+                <!-- 原有的content区域 -->
+                <div class="content">
+                    <div class="phase-recognition" style="display: flex;">
+                        <span style="font-weight:bold;color:#2e54a1;font-size:1.2em">Phase recognition</span>
+                        <button id="phase1">Creation</button>
+                        <button id="phase2">Position</button>
+                        <button id="phase3">Separation</button>
+                        <button id="phase4">Inspection</button>
+                        <button id="phase5">Idle</button>
+                    </div>
+                    <div class="video-area">
+                        <video id="mainVideo" src="video1.mp4" controls poster=""></video>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const mainVideo = document.getElementById('mainVideo');
+        mainVideo.play();
+        // 存储从JSON加载的视频数据
+        let videoData = [];
+        
+        // 先加载视频数据
+        fetch('/dataset/info.json')
+        .then(response => response.json())
+        .then(data => {
+            videoData = data.videos;
+            console.log('视频数据加载成功:', videoData);
+            
+            // 再加载视频选择UI
+            return fetch('/dataset/video.html');
+        })
+        .then(response => response.text())
+        .then(html => {
+            // 插入悬浮窗到菜单后面
+            document.querySelector('.menu').insertAdjacentHTML('afterend', html);
+
+            // 插入后再获取和绑定
+            const fileBtn = document.getElementById('fileBtn');
+            const filePopup = document.getElementById('filePopup');
+            const mainVideo = document.getElementById('mainVideo');
+
+            fileBtn.addEventListener('click', (e) => {
+                filePopup.classList.toggle('show');
+                e.stopPropagation();
+            });
+            document.addEventListener('click', () => {
+                filePopup.classList.remove('show');
+            });
+            filePopup.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // 绑定视频按钮事件
+            document.querySelectorAll('.customPlayBtn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const src = btn.getAttribute('data-src');
+                    const videoInfo = videoData.find(item => item.src === src);
+                    
+                    if (videoInfo) {
+                        // 更新视频
+                        mainVideo.pause();
+                        mainVideo.src = src;
+                        mainVideo.load();
+                        
+                        // 更新病人信息表单
+                        document.getElementById('name').value = videoInfo.patientID;
+                        document.getElementById('age').value = videoInfo.age;
+                        document.getElementById('sex').value = videoInfo.sex;
+                        document.getElementById('surgery').value = videoInfo.surgery;
+                        
+                        // 更新日期
+                        const date = videoInfo.date;
+                        document.getElementById('year').value = date.year;
+                        document.getElementById('month').value = date.month;
+                        document.getElementById('day').value = date.day;
+                        
+                        // 更新时长
+                        const duration = videoInfo.duration;
+                        document.getElementById('durationH').value = duration.hours;
+                        document.getElementById('durationM').value = duration.minutes;
+                        document.getElementById('durationS').value = duration.seconds;
+                        
+                        // 更新外科医生
+                        document.getElementById('surgeon').value = videoInfo.surgeon;
+                        
+                        console.log('已更新视频和病人信息:', videoInfo);
+                    } else {
+                        console.error('未找到对应视频信息:', src);
+                    }
+                });
+            });
+            initPhaseRecognition(); // 调用 phaseRec.js 中的初始化函数
+        })
+        .catch(error => {
+            console.error('加载视频资源失败:', error);
+            alert('加载视频资源失败，请刷新页面或联系管理员');
+        });
+
+        // 案例切换函数
+        function switchCase(caseId) {
+            currentCase = caseId;
+            
+            // 更新按钮状态
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-case="${caseId}"]`).classList.add('active');
+            
+            // 根据案例ID过滤视频数据并更新界面
+            const caseVideos = videoData.filter(video => video.caseId === caseId);
+            if (caseVideos.length > 0) {
+                // 加载该案例的第一个视频
+                loadVideoInfo(caseVideos[0]);
+            }
+            
+            console.log(`切换到案例: ${caseId}`);
+            // 控制模块显示状态
+            updateModuleVisibility(caseId);
+        }
+        // 模块显示控制函数
+        function updateModuleVisibility(caseId) {
+        const Module1 = document.getElementById('instrument');
+        const Module2 = document.getElementById('tissue');
+        const Module3 = document.getElementById('desmoke');
+        const explanationModule = document.getElementById('explanation-module');
+
+        // 统一重置父容器样式（确保切换时布局一致）
+        explanationModule.style.display = 'flex';
+        explanationModule.style.flexDirection = 'column';
+        explanationModule.style.alignItems = 'flex-start'; // 强制靠左
+
+        // 根据 caseId 控制显示
+        switch(caseId) {
+            case 'case1':
+            Module1.style.display = 'flex';
+            Module2.style.display = 'flex';
+            Module3.style.display = 'flex';
+            break;
+            case 'case2':
+            Module1.style.display = 'flex';
+            Module2.style.display = 'none';
+            Module3.style.display = 'none';
+            break;
+            case 'case3':
+            Module1.style.display = 'none';
+            Module2.style.display = 'flex';
+            Module3.style.display = 'none';
+            break;
+            case 'case4':
+            Module1.style.display = 'none';
+            Module2.style.display = 'none';
+            Module3.style.display = 'flex';
+            break;
+            default:
+            Module1.style.display = 'none';
+            Module2.style.display = 'none';
+            Module3.style.display = 'none';
+            break;
+        }
+        }
+        // 切换实时模式
+        const realtimeBtn = document.getElementById('realtimeBtn');
+        realtimeBtn.addEventListener('click', () => {
+            window.location.href = 'main.html'; // 跳转页面
+        })
+    </script>
+    <script src="phaseRec.js"></script> <!-- 引入阶段识别脚本 -->
+    <script src="report.js"></script>
+</body>
+</html>

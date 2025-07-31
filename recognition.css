@@ -1,0 +1,194 @@
+/* 修改content区域样式 */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+.phase-recognition {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(46,84,161,0.05);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 8px;
+    display: none;
+}
+.phase-recognition button {
+    border-radius: 50px;
+    padding: 6px 18px;
+    border: 1px solid #bfcbe3;
+    background: #f7f9fc;
+    color: #2e54a1;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.phase-recognition .active {
+    background: #4caf50;
+    color: #fff;
+    border-color: #4caf50;
+}
+.video-area {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(46,84,161,0.07);
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.video-area video {
+    width: 720px;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+@media (max-width: 1100px) {
+    .main {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        margin-bottom: 18px;
+    }
+    .video-area video {
+        width: 100%;
+    }
+}
+.target-element {
+    transition: background-color 0.5s ease; /* 添加平滑过渡效果 */
+}
+.highlight {
+    background-color: #4caf50; /* 目标颜色 */
+}
+
+/* 视频下方的注释模块 */
+/* 确保父容器和子模块的布局稳定 */
+#explanation-module {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 子元素靠左对齐（关键！） */
+    gap: 20px; /* 模块间距（替代 margin，更整洁） */
+}
+
+.content-area {
+  width: 100%; /* 内容容器占满父宽度 */
+}
+
+/* 确保每个模块占满宽度，保持左对齐 */
+#instrument, #tissue, #desmoke {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* 关键：占满父容器宽度 */
+  align-items: flex-start; /* 内容靠左（如果需要） */
+}
+
+.module-title {
+    color: #2e54a1;
+    font-size: 20px;
+    font-weight: 500;
+    margin-right:20px;
+    align-items: center; 
+}
+
+.annotation-box {
+    background: #f0f2f5;
+    border: 2px solid #d0d7de;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+    font-size: 18px;
+    color: #333;
+    width: 90%;
+    gap: 15px;
+}
+
+.instrument-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-square {
+    width: 30px;
+    height: 20px;
+    border: 1px solid #ccc;
+    flex-shrink: 0; /* 防止压缩 */
+}
+.color-square#color1 {
+    background-color: RGB(48,192,180); /* 黄色 */
+}
+.color-square#color2 {
+    background-color: rgb(117,189,66); /* 紫色 */
+}
+.color-square#color3 {
+    background-color: #f1c40f; /* 蓝色 */
+}
+.color-label, .anatomy-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.anatomy-value {
+    color: #333;
+    font-weight: 500;
+}
+
+/* 去雾注释模块 */
+.content-area {
+    display: flex;
+    height: 100px;
+    border: 2px solid #d0d0d0;
+    margin: 0;
+}
+
+.left-panel {
+    flex: 1;
+    background-color: #f8f8f8;
+    padding: 30px 20px;
+    border-right: 3px solid #4a90e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.right-panel {
+    flex: 2;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.panel-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+}
+
+.status-display {
+    padding: 15px 20px;
+    background-color: #e3f2fd;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    font-weight: 600;
+    color: #1976d2;
+}
