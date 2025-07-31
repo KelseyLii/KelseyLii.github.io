@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            /* 设置背景图片 */
+            background-image: url('background3.png');
+            background-size: cover; /* 覆盖整个容器 */
+            background-position: center; /* 居中显示 */
+            background-repeat: no-repeat; /* 不重复 */
+            min-height: 100vh; /* 确保页面高度至少为一屏 */
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        /* .image-stack {
+            position: absolute;
+            width: 80%;
+            max-width: 1000px;
+            height: 100vh;
+        }
+
+        /* 第二张图片（中层）
+        .stacked-image:nth-child(1) {
+            top: 0;
+            left: 0;
+            z-index: 2;
+            opacity: 0.95;
+        }
+
+        /* 第三张图片（顶层
+        .stacked-image:nth-child(2) {
+            top: 0;
+            left: 0;
+            z-index: 3;
+            opacity: 1;
+        } */
+        /* 重叠图片 */
+        #image2 {
+            position: absolute;
+            bottom: 0;
+            height: 80%;
+            z-index: 1;
+            object-fit: cover; /* 保持图片比例 */
+        }
+        #image3 {
+            position: absolute;
+            height: 100%;
+            z-index: 2;
+            object-fit: cover; /* 保持图片比例 */
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 3;
+            width: 300px; /* 根据实际需求调整大小 */
+        }
+        .login-container {
+            position: absolute;
+            top: 46%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            max-width: 90%;
+            align-items: center;
+            z-index: 3;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            /* margin-bottom: 20px; */
+            font-family: "Times New Roman", Times, serif; 
+            font-size: 42px; /* 根据实际需求调整大小 */ 
+            color: rgb(30,56,107); /* 近似的深蓝色，可根据实际色值微调 */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .developer-info {
+            color: #ffffff;
+            position:absolute;
+            font-size: 20px;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index:4;
+        }
+    </style>
+</head>
+<body>
+    <!-- 重叠图片区域 -->
+    <div class="image-stack">
+        <img id="image2" src="background3-2.png" alt="中层图片" class="stacked-image">
+        <img id="image3" src="background3-3.png" alt="顶层图片" class="stacked-image">
+    </div>
+    <div>
+        <img src="logo.png" class="logo">
+    </div>
+
+    <div class="login-container">
+        <form class="login-form">
+            <h2>AI-OMS</h2>
+            <div class="form-group">
+                <label for="username">username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button id="login" type="submit">Login</button>
+        </form>
+    </div>
+    <div>
+        <p class="developer-info">开发者信息：四川大学华西医院头颈肿瘤外科</p>
+    </div>
+    <script> 
+        const loginButton = document.getElementById("login");
+
+        // add click event on login button
+        loginButton.addEventListener("click", (e) => {
+            e.preventDefault(); // 阻止表单默认提交
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // 预设账号（实际项目中需替换为后端验证）
+            const validUsername = "admin";
+            const validPassword = "123456";
+            
+            if (username === validUsername && password === validPassword) {
+                // 验证成功，跳转
+                window.location.href = 'main.html';
+            } else {
+                alert('Incorrect user name or password');
+            }
+                })
+    </script>
+</body>
+</html>
