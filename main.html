@@ -365,6 +365,14 @@
                         
                         // 更新外科医生
                         document.getElementById('surgeon').value = videoInfo.surgeon;
+
+                        // 将四个视频项存入数组，并保存到全局变量 currentVideoArray
+                        window.currentVideoArray = [
+                            videoInfo.src,
+                            videoInfo.instrument,
+                            videoInfo.tissue,
+                            videoInfo.desmoke
+                        ];
                         
                         console.log('已更新视频和病人信息:', videoInfo);
                     } else {
@@ -389,16 +397,11 @@
             });
             document.querySelector(`[data-case="${caseId}"]`).classList.add('active');
             
-            // 根据案例ID过滤视频数据并更新界面
-            const caseVideos = videoData.filter(video => video.caseId === caseId);
-            if (caseVideos.length > 0) {
-                // 加载该案例的第一个视频
-                loadVideoInfo(caseVideos[0]);
-            }
-            
             console.log(`切换到案例: ${caseId}`);
             // 控制模块显示状态
             updateModuleVisibility(caseId);
+            // 根据当前模块更新 mainVideo 视频源
+            updateMainVideoByCase(caseId);
         }
         // 模块显示控制函数
         function updateModuleVisibility(caseId) {
@@ -426,9 +429,6 @@
                     Module2.style.display = 'none';
                     Module3.style.display = 'none';
                     recog.style.display = 'flex';
-                    mainVideo.pause();
-                    mainVideo.src = "video2.mp4";   // 替换为处理后的视频
-                    mainVideo.load();
                     break;
                     
                 case 'case3':
@@ -437,9 +437,6 @@
                     Module2.style.display = 'flex';
                     Module3.style.display = 'none';
                     recog.style.display = 'flex';
-                    mainVideo.pause();
-                    mainVideo.src = "video3.mp4";
-                    mainVideo.load();
                     break;
                     
                 case 'case4':
@@ -448,9 +445,6 @@
                     Module2.style.display = 'none';
                     Module3.style.display = 'flex';
                     recog.style.display = 'flex';
-                    mainVideo.pause();
-                    mainVideo.src = "video4.mp4";
-                    mainVideo.load();
                     break;
                     
                 default:
@@ -461,6 +455,41 @@
                     hideModule(reportModule);
                     break;
             }
+        }
+        // 假设 videoData 数组已经包含了所有视频信息
+        function updateMainVideoByCase(caseId) {
+            if (!window.currentVideoArray || window.currentVideoArray.length === 0) {
+                console.error('当前视频数组为空');
+                return;
+            }
+            
+            // 定义不同 case 对应的视频数组下标
+            let index;
+            switch(caseId) {
+                case 'case1':
+                    index = 0; // 原视频
+                    break;
+                case 'case2':
+                    index = 1; // instrument 视频
+                    break;
+                case 'case3':
+                    index = 2; // tissue 视频
+                    break;
+                case 'case4':
+                    index = 3; // desmoke 视频
+                    break;
+                default:
+                    index = 0;
+            }
+            
+            // 更新 mainVideo 视频
+            const mainVideo = document.getElementById('mainVideo');
+            mainVideo.pause();
+            // 如果对应的 src 为空字符串，则可以不更新
+            mainVideo.src = window.currentVideoArray[index] || "";
+            mainVideo.load();
+            
+            console.log('切换模块，当前选择的视频：', mainVideo.src);
         }
         // 切换实时模式
         const realtimeBtn = document.getElementById('realtimeBtn');
@@ -491,4 +520,5 @@
     <script src="phaseRec.js"></script> <!-- 引入阶段识别脚本 -->
     <script src="report.js"></script>
 </body>
+
 </html>
