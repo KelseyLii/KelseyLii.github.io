@@ -13,28 +13,34 @@
             },
             "duration":{
                 "hours":0,
-                "minutes":2,
-                "seconds":30
+                "minutes":0,
+                "seconds":18
             },
-            "surgeon":"李四"
+            "surgeon": "李四",
+            "instrument": "video1-1.mp4",  
+            "tissue": "video1-2.mp4",
+            "desmoke": ""
         },
         {
             "src":"video2.mp4",
-            "patientID":"张三",
-            "age":"30",
+            "patientID":"王五",
+            "age":"48",
             "sex":"M",
             "surgery":"SMG resection",
             "date":{
-                "year":"2024",
-                "month":"10",
-                "day":"1"
+                "year":"2025",
+                "month":"3",
+                "day":"19"
             },
             "duration":{
                 "hours":0,
-                "minutes":2,
-                "seconds":30
+                "minutes":0,
+                "seconds":16
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": "video2-4.mp4"
         },
         {
             "src":"video3.mp4",
@@ -109,4 +115,5 @@
             "surgeon":"李四"
         }
     ]
+
 }
