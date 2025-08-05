@@ -58,7 +58,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video4.mp4",
@@ -76,7 +79,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video5.mp4",
@@ -94,7 +100,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video6.mp4",
@@ -112,7 +121,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video7.mp4",
@@ -130,7 +142,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video8.mp4",
@@ -148,7 +163,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video9.mp4",
@@ -166,7 +184,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video10.mp4",
@@ -184,7 +205,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         },
         {
             "src":"video11.mp4",
@@ -202,11 +226,10 @@
                 "minutes":2,
                 "seconds":30
             },
-            "surgeon":"李四"
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         }
     ]
 }
-
-
-
-
