@@ -76,6 +76,7 @@
 
         .report-image {
             max-width: 80%;
+            max-height: 100%;   /* 新增 */
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             background: white;
@@ -158,4 +159,5 @@
             z-index: 1001;
             font-weight: 600;
             animation: slideIn 0.3s ease-out;
+
         }
