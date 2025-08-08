@@ -23,7 +23,7 @@
         },
         {
             "src":"video2.mp4",
-            "patientID":"王五",
+            "patientID":"王某某", 
             "age":"48",
             "sex":"M",
             "surgery":"SMG resection",
@@ -37,7 +37,7 @@
                 "minutes":0,
                 "seconds":16
             },
-            "surgeon":"李四",
+            "surgeon":"李某某",
             "instrument": "",
             "tissue": "",
             "desmoke": "video2-3.mp4"
@@ -230,7 +230,29 @@
             "instrument": "",
             "tissue": "",
             "desmoke": ""
+        },
+        {
+            "src":"video2-3.mp4",
+            "patientID":"张三",
+            "age":"30",
+            "sex":"M",
+            "surgery":"SMG resection",
+            "date":{
+                "year":"2024",
+                "month":"10",
+                "day":"1"
+            },
+            "duration":{
+                "hours":0,
+                "minutes":2,
+                "seconds":30
+            },
+            "surgeon":"李四",
+            "instrument": "",
+            "tissue": "",
+            "desmoke": ""
         }
     ]
 }
+
 
