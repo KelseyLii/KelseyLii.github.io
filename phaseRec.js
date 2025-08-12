@@ -40,6 +40,8 @@ function initPhaseRecognition() {
             phaseElements.phase2.classList.add('active');
         } else if (src.includes('video2-3')) {
             phaseElements.phase3.classList.add('active');
+        } else if (src.includes('video1')) {
+            phaseElements.phase2.classList.add('active');
         }
     }
 
@@ -61,3 +63,4 @@ function initPhaseRecognition() {
 document.addEventListener('DOMContentLoaded', () => {
     initPhaseRecognition();
 });
+
