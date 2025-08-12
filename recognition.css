@@ -124,13 +124,13 @@
     flex-shrink: 0; /* 防止压缩 */
 }
 .color-square#color1 {
-    background-color: RGB(48,192,180); /* 黄色 */
+    background-color: RGB(48,192,180);
 }
 .color-square#color2 {
-    background-color: rgb(117,189,66); /* 紫色 */
+    background-color: rgb(117,189,66);
 }
 .color-square#color3 {
-    background-color: #f1c40f; /* 蓝色 */
+    background-color: purple;
 }
 .color-label, .anatomy-label {
     font-weight: 600;
@@ -192,3 +192,4 @@
     font-weight: 600;
     color: #1976d2;
 }
+
