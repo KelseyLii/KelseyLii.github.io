@@ -101,6 +101,56 @@
         .recinfo {
             background-color: white;
         }
+        /* 移动端自适应优化 */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: row;
+                padding: 5px 10px;
+                font-size: 1em;
+            }
+            .sidebar {
+                min-width: 0;
+                width: 100vw;
+                box-sizing: border-box;
+            }
+            .case-info, .summary-report {
+                font-size: 1em;
+            }
+            .content-wrapper {
+                padding: 0;
+            }
+            .tab-container {
+                flex-direction: row;
+                overflow-x: auto;
+                width: 100vw;
+                border-bottom-width: 2px;
+            }
+            .tab-btn {
+                min-width: 120px;
+                font-size: 15px;
+                padding: 10px 10px;
+                flex: none;
+            }
+            .phase-recognition {
+                flex-wrap: wrap;
+                gap: 6px;
+                font-size: 1em;
+            }
+            .phase-recognition button {
+                font-size: 15px;
+                padding: 6px 10px;
+                margin: 3px 1px;
+            }
+            /* file弹窗适配优化 */
+            #filePopup {
+                max-width: 95vw !important;
+                min-width: 180px;
+                left: 2.5vw !important;
+                right: auto;
+                box-sizing: border-box;
+                overflow-x: auto;
+            }
+        }
     </style>
 </head>
 
@@ -379,6 +429,7 @@
 </body>
 
 </html>
+
 
 
 
