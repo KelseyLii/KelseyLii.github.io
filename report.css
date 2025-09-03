@@ -182,13 +182,24 @@
         width: 28px;
         height: 28px;
     }
-    .image-preview {
+/*     .image-preview {
         padding: 8px;
     }
     .report-image {
         max-width: 98vw;
         max-height: 60vh;
-    }
+    } */
+.report-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.image-preview {
+    max-width: 95vw;
+    overflow-x: auto;
+    text-align: center;
+}
     .modal-footer {
         padding: 12px;
         gap: 8px;
@@ -211,3 +222,4 @@
         font-size: 0.95rem;
     }
 }
+
